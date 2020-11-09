@@ -110,6 +110,7 @@ routes.post("/", async (req, res) => {
     return res.sendStatus(200);
   } catch (error) {
     console.log(error);
+    console.log("deumerda")
     return res.sendStatus(503);
   }
 });
