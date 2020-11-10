@@ -40,12 +40,8 @@ async function selectPlatform(page, platformName) {
       if (platformName === possiblePlatform.split(". ")[1]) platforms[i].children[0].click();
     }
   }, platformName);
-
-  try {
-    await page.waitForSelector("body > div.wrapper.full > div > div.box.box-full.group-book-video.box-num6 > div.group-book-video-item.opened > ul");  
-  } catch {
-    await page.waitForSelector("body > div.wrapper.full > div > div.box.box-full.group-book-video.box-num7 > div.group-book-video-item.opened > ul");
-  }
+  
+  await page.waitForSelector("body > div.wrapper.full > div > div.box.box-full.group-book-video.box-num6 > div.group-book-video-item.opened > ul");  
   
 
   const platformLink = await page.evaluate(() => document.getElementsByClassName("opened")[0].children[2].children[0].children[0].children[3].children[0].children[0].href);
