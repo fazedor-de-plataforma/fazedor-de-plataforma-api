@@ -10,21 +10,6 @@ const express = require("express");
 const { Router } = require("express");
 
 const cors = require("cors");
-/*
-usuário
-senha
-nome da materia
-nome da plataforma
-questoes
-codigo - alternativa
-codigo - alternativa
-codigo - alternativa
-codigo - alternativa
-
-"/jogos"
-"/animes"
-"/comida"
-*/
 
 const server = express();
 const routes = Router();
@@ -79,7 +64,7 @@ async function checkAnswer(page, questions) {
 
   await page.waitForSelector("body > div.wrapper.full > div.content.questao-page > div.questao-container > div > div.title > div.id-quest");
   const currentQuestionCode = await page.evaluate(() => document.querySelector("body > div.wrapper.full > div.content.questao-page > div.questao-container > div > div.title > div.id-quest")
-    .innerHTML.split("Q")[1].replace(/\s+/g, "").slice(-2));
+    .innerHTML.split("Q")[1].replace(/\s+/g, "").slice(-questions[0].code.length));
 
   const currentQuestion = questions.filter((question) => question.code === currentQuestionCode)[0];
   if (currentQuestion) {
