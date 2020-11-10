@@ -94,7 +94,7 @@ routes.post("/", async (req, res) => {
     user, password, subject, platform, questions,
   } = req.body;
   
-  const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
+  const browser = await puppeteer.launch({args: ['--no-sandbox']});
   console.log("chamou");
   try {
     const page = await browser.newPage();
