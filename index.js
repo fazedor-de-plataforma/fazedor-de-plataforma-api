@@ -60,7 +60,7 @@ async function checkAnswer(page, questions) {
 
   await page.waitForSelector("body > div.wrapper.full > div.content.questao-page > div.questao-container > div > div.title > div.id-quest");
   const currentQuestionCode = await page.evaluate(() => document.querySelector("body > div.wrapper.full > div.content.questao-page > div.questao-container > div > div.title > div.id-quest")
-  .innerHTML.split("Q")[1].replace(/\s+/g, "").slice(-questions[0].code.length));
+  .innerHTML).split("Q")[1].replace(/\s+/g, "").slice(-questions[0].code.length);
 
   const currentQuestion = questions.filter((question) => question.code === currentQuestionCode)[0];
   if (currentQuestion) {
