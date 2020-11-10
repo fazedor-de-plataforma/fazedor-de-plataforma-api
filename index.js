@@ -68,6 +68,7 @@ async function checkAnswer(page, questions) {
   const currentQuestion = questions.filter((question) => question.code === currentQuestionCode)[0];
   if (currentQuestion) {
     await page.evaluate((dict, question) => document.querySelector("#alternativas").children[dict[question.answer]].children[1].click(), dict, currentQuestion);
+    await page.waitForSelector("#Responder");
     await page.click("#Responder");
     await page.waitForSelector("body > div.swal2-container.swal2-center.swal2-backdrop-show > div > div.swal2-actions > button.swal2-confirm.swal2-styled");
     await page.click("body > div.swal2-container.swal2-center.swal2-backdrop-show > div > div.swal2-actions > button.swal2-confirm.swal2-styled");
