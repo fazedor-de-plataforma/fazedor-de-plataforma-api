@@ -62,6 +62,7 @@ async function checkAnswer(page, questions) {
   
   const rawCurrentQuestionCode = await page.evaluate(() => document.querySelector("body > div.wrapper.full > div.content.questao-page > div.questao-container > div > div.title > div.id-quest")
   .innerHTML.split("Q")[1].replace(/\s+/g, ""))
+  console.log(questions);
   const currentQuestionCode = rawCurrentQuestionCode.slice(-questions[0].code.length);
 
   const currentQuestion = questions.filter((question) => question.code === currentQuestionCode)[0];
@@ -83,7 +84,7 @@ routes.post("/", async (req, res) => {
   } = req.body;
   
   const browser = await puppeteer.launch({args: ['--no-sandbox']});
-  console.log("chamou");
+  console.log(req.body);
   try {
     const page = await browser.newPage();
     await page.goto("https://ava.sae.digital/");
